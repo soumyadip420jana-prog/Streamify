@@ -588,3 +588,347 @@ footer::after {
     text-align: center;
   }
 }
+/* ══════════════════════════════
+   MUSIC VISUALIZER
+══════════════════════════════ */
+
+.musicVisual{
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 260px;
+    height: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+/* Neon rotating disc */
+.ring{
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 4px solid rgba(29,185,84,0.6);
+
+    box-shadow:
+        0 0 20px rgba(29,185,84,0.7),
+        inset 0 0 20px rgba(29,185,84,0.5);
+
+    animation:
+        rotateRing 10s linear infinite,
+        pulseRing 2s ease-in-out infinite;
+}
+
+/* Sound waves */
+
+.wave{
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid rgba(0,229,204,0.4);
+    animation: wavePulse 3s linear infinite;
+}
+
+.wave1{
+    width: 140px;
+    height: 140px;
+}
+
+.wave2{
+    width: 190px;
+    height: 190px;
+    animation-delay: 1s;
+}
+
+.wave3{
+    width: 240px;
+    height: 240px;
+    animation-delay: 2s;
+}
+
+/* Floating notes */
+
+.note{
+    position: absolute;
+    font-size: 2rem;
+    animation: floatNotes 5s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
+}
+
+.note1{
+    left: 10px;
+    top: 20px;
+}
+
+.note2{
+    right: 20px;
+    top: 50px;
+    animation-delay: 1s;
+}
+
+.note3{
+    bottom: 10px;
+    left: 50%;
+    animation-delay: 2s;
+}
+
+/* ANIMATIONS */
+
+@keyframes rotateRing{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulseRing{
+    0%,100%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.08);
+    }
+}
+
+@keyframes wavePulse{
+    0%{
+        transform: scale(0.7);
+        opacity: 1;
+    }
+
+    100%{
+        transform: scale(1.4);
+        opacity: 0;
+    }
+}
+
+@keyframes floatNotes{
+    0%,100%{
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    25%{
+        transform: translateY(-18px) rotate(-8deg);
+    }
+
+    50%{
+        transform: translateY(10px) rotate(8deg);
+    }
+
+    75%{
+        transform: translateY(-12px) rotate(-4deg);
+    }
+}
+
+/* Hover glow effect */
+
+.container:hover .ring{
+    box-shadow:
+        0 0 40px rgba(29,185,84,1),
+        inset 0 0 30px rgba(29,185,84,0.8);
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+    .musicVisual{
+        display:none;
+    }
+
+}
+/* ══════════════════════════════
+   EXTRA PREMIUM ANIMATIONS
+══════════════════════════════ */
+
+/* Animated background glow */
+body::before{
+    content: '';
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(29,185,84,0.18), transparent 70%);
+    top: -150px;
+    left: -150px;
+    z-index: -2;
+    animation: floatGlow 8s ease-in-out infinite alternate;
+}
+
+body::after{
+    content: '';
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0,229,204,0.12), transparent 70%);
+    bottom: -120px;
+    right: -120px;
+    z-index: -2;
+    animation: floatGlow2 10s ease-in-out infinite alternate;
+}
+
+@keyframes floatGlow{
+    from{
+        transform: translate(0,0) scale(1);
+    }
+    to{
+        transform: translate(80px,50px) scale(1.2);
+    }
+}
+
+@keyframes floatGlow2{
+    from{
+        transform: translate(0,0) scale(1);
+    }
+    to{
+        transform: translate(-70px,-40px) scale(1.15);
+    }
+}
+
+/* Glassmorphism */
+.container{
+    backdrop-filter: blur(14px);
+    background-color: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.45);
+}
+
+/* Floating song cards */
+.songItem{
+    transform-style: preserve-3d;
+}
+
+.songItem:hover{
+    transform: perspective(1000px)
+               rotateY(6deg)
+               scale(1.04)
+               translateX(8px);
+}
+
+/* Animated title glow */
+.songList h1{
+    position: relative;
+    display: inline-block;
+    animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow{
+    from{
+        text-shadow: 0 0 8px rgba(29,185,84,0.4);
+    }
+    to{
+        text-shadow:
+            0 0 12px rgba(29,185,84,0.8),
+            0 0 22px rgba(29,185,84,0.5);
+    }
+}
+
+/* Music equalizer effect */
+.icons::after{
+    content: '';
+    width: 70px;
+    height: 30px;
+    display: block;
+    margin: 10px auto 0;
+    background:
+        linear-gradient(#1db954 0 0) 0 100%/6px 20%,
+        linear-gradient(#1db954 0 0) 14px 100%/6px 60%,
+        linear-gradient(#1db954 0 0) 28px 100%/6px 35%,
+        linear-gradient(#1db954 0 0) 42px 100%/6px 80%,
+        linear-gradient(#1db954 0 0) 56px 100%/6px 50%;
+    background-repeat: no-repeat;
+    animation: equalizer 1s infinite linear;
+}
+
+@keyframes equalizer{
+    0%{
+        background-size:
+            6px 20%,
+            6px 60%,
+            6px 35%,
+            6px 80%,
+            6px 50%;
+    }
+
+    25%{
+        background-size:
+            6px 70%,
+            6px 30%,
+            6px 90%,
+            6px 40%,
+            6px 60%;
+    }
+
+    50%{
+        background-size:
+            6px 30%,
+            6px 80%,
+            6px 45%,
+            6px 60%,
+            6px 90%;
+    }
+
+    100%{
+        background-size:
+            6px 20%,
+            6px 60%,
+            6px 35%,
+            6px 80%,
+            6px 50%;
+    }
+}
+
+/* Neon player effect */
+.bottom{
+    box-shadow: 0 -4px 25px rgba(29,185,84,0.15);
+}
+
+/* Rotating album effect */
+.songItem img{
+    animation: rotateDisc 8s linear infinite;
+    animation-play-state: paused;
+}
+
+.songItem:hover img{
+    animation-play-state: running;
+}
+
+@keyframes rotateDisc{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+/* Floating animation for song info */
+.songInfo{
+    animation:
+        fadeIn 0.5s ease 0.6s both,
+        floating 3s ease-in-out infinite;
+}
+
+@keyframes floating{
+    0%,100%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(-4px);
+    }
+}
+
+/* Smooth progress bar */
+#myProgressBar{
+    height: 6px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Animated footer glow */
+footer{
+    box-shadow: 0 -2px 30px rgba(0,229,204,0.08);
+}
