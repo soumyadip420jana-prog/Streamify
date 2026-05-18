@@ -393,3 +393,78 @@ nav ul li:not(.brand):hover {
 
     .brand img { width: 36px; }
 }
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+
+@keyframes footerFadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+footer {
+  background-color: #0d1117;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 22px 40px;
+  animation: footerFadeIn 0.6s ease both;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ── Logo ── */
+.footer-logo {
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #00e5cc;           /* teal accent matching your screenshot */
+  letter-spacing: 0.5px;
+  cursor: default;
+  user-select: none;
+  transition: opacity 0.25s ease;
+}
+
+.footer-logo:hover {
+  opacity: 0.7;
+}
+
+/* ── Copyright (centre) ── */
+.footer-copy {
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+/* ── Location (right) ── */
+.footer-location {
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.04em;
+  text-align: right;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  footer {
+    padding: 18px 20px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .footer-location {
+    text-align: center;
+  }
+}
