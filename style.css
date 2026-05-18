@@ -932,3 +932,169 @@ body::after{
 footer{
     box-shadow: 0 -2px 30px rgba(0,229,204,0.08);
 }
+/* ══════════════════════════════
+   COOL SONG CARD EFFECTS
+══════════════════════════════ */
+
+.songItem{
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        background 0.35s ease;
+}
+
+/* SONG NUMBER BADGE */
+
+.songItem::before{
+    content: attr(data-song);
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+
+    background: linear-gradient(135deg,#1db954,#00e5cc);
+
+    color: white;
+    font-size: 0.9rem;
+    font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 0 18px rgba(29,185,84,0.5);
+
+    transition: all 0.35s ease;
+}
+
+/* SHINE EFFECT */
+
+.songItem::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 60%;
+    height: 100%;
+
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.45),
+        transparent
+    );
+
+    transform: skewX(-25deg);
+}
+
+/* HOVER EFFECT */
+
+.songItem:hover{
+    transform:
+        perspective(1000px)
+        rotateY(7deg)
+        scale(1.04)
+        translateX(12px);
+
+    background: rgba(29,185,84,0.15);
+
+    box-shadow:
+        0 10px 35px rgba(29,185,84,0.35),
+        0 0 20px rgba(0,229,204,0.2);
+
+    border-color: rgba(29,185,84,0.4);
+}
+
+/* MOVE NUMBER BADGE */
+
+.songItem:hover::before{
+    left: 10px;
+    transform: translateY(-50%) scale(1.1) rotate(10deg);
+}
+
+/* RUNNING SHINE */
+
+.songItem:hover::after{
+    animation: shineMove 1s ease;
+}
+
+/* SONG NAME EFFECT */
+
+.songName{
+    transition:
+        letter-spacing 0.3s ease,
+        transform 0.3s ease,
+        color 0.3s ease;
+}
+
+.songItem:hover .songName{
+    color: white;
+    letter-spacing: 1px;
+    transform: translateX(8px);
+}
+
+/* PLAY BUTTON EFFECT */
+
+.songItemPlay{
+    transition:
+        transform 0.3s ease,
+        color 0.3s ease,
+        text-shadow 0.3s ease;
+}
+
+.songItem:hover .songItemPlay{
+    transform: scale(1.4) rotate(8deg);
+    color: #fff;
+
+    text-shadow:
+        0 0 12px rgba(255,255,255,0.8),
+        0 0 22px rgba(29,185,84,0.8);
+}
+
+/* PLAYING SONG ANIMATION */
+
+.songItem.activeSong{
+    background: linear-gradient(
+        90deg,
+        rgba(29,185,84,0.25),
+        rgba(0,229,204,0.15)
+    );
+
+    animation: activePulse 2s ease infinite;
+
+    border: 1px solid rgba(29,185,84,0.4);
+}
+
+/* KEYFRAMES */
+
+@keyframes shineMove{
+    0%{
+        left: -120%;
+    }
+
+    100%{
+        left: 150%;
+    }
+}
+
+@keyframes activePulse{
+
+    0%,100%{
+        box-shadow: 0 0 12px rgba(29,185,84,0.3);
+    }
+
+    50%{
+        box-shadow:
+            0 0 30px rgba(29,185,84,0.7),
+            0 0 60px rgba(0,229,204,0.35);
+    }
+}
