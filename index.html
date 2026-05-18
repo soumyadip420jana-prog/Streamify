@@ -10,12 +10,38 @@
         </head>
 <body>
     <nav>
-        <ul>
-            <li class="brand"><img src="logo.png" alt="Spotify">Streamify</li>
-            <li>Home</li>
-            <li>About</li>
-        </ul>
-    </nav>
+    <ul>
+        <li class="brand"><img src="logo.png" alt="Spotify"> Streamify</li>
+        <li class="active">Home</li>
+        <li>About</li>
+
+        <!-- pushes everything after it to the right -->
+        <li class="nav-spacer"></li>
+
+        <!-- Search -->
+        <li class="nav-search-item">
+            <div class="nav-search-wrap">
+                <span class="nav-search-icon">
+                    <i class="fas fa-search"></i>
+                </span>
+                <input type="text" id="navSearch" placeholder="Search songs…">
+            </div>
+        </li>
+
+        <!-- Bell with badge -->
+        <li class="nav-bell">
+            <i class="fas fa-bell nav-bell-icon"></i>
+            <span class="nav-badge"></span>
+        </li>
+
+        <!-- Avatar -->
+        <li class="nav-avatar">
+            <div class="nav-avatar-wrap">
+                <div class="nav-avatar-img">S</div>
+            </div>
+        </li>
+    </ul>
+</nav>
 
     <div class="container">
         <div class="songList">
