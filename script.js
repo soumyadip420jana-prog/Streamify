@@ -10,16 +10,16 @@ let masterSongName = document.getElementById('masterSongName');
 let songItems = Array.from(document.getElementsByClassName('songItem'));
 
 let songs = [
-    { songName: "Song 1",  filePath: "1.mp3",  coverPath: "1.jpg"  },
+    { songName: "Kamariya",  filePath: "1.mp3",  coverPath: "1.jpg"  },
     { songName: "Tum Ho Toh",  filePath: "2.mp3",  coverPath: "2.jpg"  },
-    { songName: "Song 3",  filePath: "3.mp3",  coverPath: "3.jpg"  },
-    { songName: "Song 4",  filePath: "4.mp3",  coverPath: "4.jpg"  },
-    { songName: "Song 5",  filePath: "5.mp3",  coverPath: "5.jpg"  },
-    { songName: "Song 6",  filePath: "6.mp3",  coverPath: "6.jpg"  },
-    { songName: "Song 7",  filePath: "7.mp3",  coverPath: "7.jpg"  },
-    { songName: "Song 8",  filePath: "8.mp3",  coverPath: "8.jpg"  },
-    { songName: "Song 9",  filePath: "9.mp3",  coverPath: "9.jpg"  },
-    { songName: "Song 10", filePath: "10.mp3", coverPath: "10.jpg" }
+    { songName: "Tomake Chai",  filePath: "3.mp3",  coverPath: "3.jpg"  },
+    { songName: "Borbaad Hoyechi Ami",  filePath: "4.mp3",  coverPath: "4.jpg"  },
+    { songName: "Danda Tudung Tudung",  filePath: "5.mp3",  coverPath: "5.jpg"  },
+    { songName: "Aladdin",  filePath: "6.mp3",  coverPath: "6.jpg"  },
+    { songName: "Galti Sa Mistake",  filePath: "7.mp3",  coverPath: "7.jpg"  },
+    { songName: "Sau Tarah Ke",  filePath: "8.mp3",  coverPath: "8.jpg"  },
+    { songName: "Paani Wala Dance",  filePath: "9.mp3",  coverPath: "9.jpg"  },
+    { songName: "Hota Paara Na", filePath: "10.mp3", coverPath: "10.jpg" }
 ];
 
 songItems.forEach((element, i) => {
