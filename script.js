@@ -95,3 +95,40 @@ document.getElementById('previous').addEventListener('click', () => {
     masterPlay.classList.remove('fa-play-circle');
     masterPlay.classList.add('fa-pause-circle');
 });
+// focus mode effect
+
+const allSongs = document.querySelectorAll('.songItem');
+
+allSongs.forEach(song => {
+
+    song.addEventListener('click', () => {
+
+        // remove old states
+
+        allSongs.forEach(item => {
+            item.classList.remove('activeFocus');
+            item.classList.add('blurSong');
+        });
+
+        // selected song stays visible
+
+        song.classList.remove('blurSong');
+        song.classList.add('activeFocus');
+
+    });
+
+});
+
+// reset effect when mouse leaves container
+
+document.querySelector('.songItemContainer')
+.addEventListener('mouseleave', () => {
+
+    allSongs.forEach(item => {
+
+        item.classList.remove('blurSong');
+        item.classList.remove('activeFocus');
+
+    });
+
+});

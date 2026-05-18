@@ -1815,3 +1815,61 @@ footer{
             0 0 60px rgba(0,229,204,0.35);
     }
 }
+/* ══════════════════════════════
+   FOCUS MODE EFFECT
+══════════════════════════════ */
+
+.songItem{
+    transition:
+        opacity 0.5s ease,
+        transform 0.45s ease,
+        filter 0.45s ease,
+        box-shadow 0.45s ease;
+}
+
+/* other songs fade away */
+
+.songItem.blurSong{
+    opacity: 0.12;
+    transform: scale(0.92);
+    filter: blur(4px);
+    pointer-events: none;
+}
+
+/* selected song highlight */
+
+.songItem.activeFocus{
+    opacity: 1 !important;
+
+    transform:
+        scale(1.08)
+        translateX(15px);
+
+    z-index: 20;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(29,185,84,0.35),
+            rgba(0,229,204,0.18)
+        );
+
+    box-shadow:
+        0 0 30px rgba(29,185,84,0.45),
+        0 0 60px rgba(0,229,204,0.25);
+
+    filter: none;
+}
+
+/* glowing border */
+
+.songItem.activeFocus::before{
+    animation:
+        activePulse 1.5s infinite;
+}
+
+/* smooth comeback */
+
+.songItemContainer:hover .songItem{
+    transition-delay: 0s;
+}
