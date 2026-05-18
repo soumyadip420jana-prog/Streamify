@@ -398,16 +398,89 @@ nav ul li:not(.brand):hover {
    FOOTER
 ══════════════════════════════ */
 
-@keyframes footerFadeIn {
-  from { opacity: 0; transform: translateY(16px); }
+/* ══════════════════════════════
+   FOOTER — ANIMATIONS
+══════════════════════════════ */
+
+@keyframes footerSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes logoGlitch {
+  0%   { text-shadow: none; transform: translate(0); }
+  20%  { text-shadow: -2px 0 #ff005c, 2px 0 #00e5cc; transform: translate(-1px, 0); }
+  40%  { text-shadow: 2px 0 #ff005c, -2px 0 #00e5cc; transform: translate(1px, 0); }
+  60%  { text-shadow: -1px 0 #00e5cc; transform: translate(0); }
+  80%  { text-shadow: 1px 0 #ff005c; transform: translate(1px, 0); }
+  100% { text-shadow: none; transform: translate(0); }
+}
+
+@keyframes textReveal {
+  from { opacity: 0; letter-spacing: 0.3em; filter: blur(4px); }
+  to   { opacity: 1; letter-spacing: 0.04em; filter: blur(0); }
+}
+
+@keyframes locationDrift {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 0.35; transform: translateX(0); }
+}
+
+@keyframes borderScan {
+  0%   { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.35; }
+  50%       { opacity: 0.65; }
+}
+
+/* ══════════════════════════════
+   FOOTER BASE
+══════════════════════════════ */
+
 footer {
   background-color: #0d1117;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding: 22px 40px;
-  animation: footerFadeIn 0.6s ease both;
+  position: relative;
+  overflow: hidden;
+  animation: footerSlideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* animated scanning top border */
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.04) 20%,
+    #00e5cc 50%,
+    rgba(255,255,255,0.04) 80%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: borderScan 3.5s linear infinite;
+}
+
+/* subtle grid texture */
+footer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,229,204,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,204,0.015) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
 }
 
 .footer-inner {
@@ -416,43 +489,90 @@ footer {
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
-/* ── Logo ── */
+/* ══════════════════════════════
+   LOGO
+══════════════════════════════ */
+
 .footer-logo {
   font-family: 'Courier New', monospace;
   font-size: 1rem;
   font-weight: 700;
-  color: #00e5cc;           /* teal accent matching your screenshot */
+  color: #00e5cc;
   letter-spacing: 0.5px;
   cursor: default;
   user-select: none;
-  transition: opacity 0.25s ease;
+  position: relative;
+
+  /* entry: slide from left */
+  animation: footerSlideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+  transition: color 0.3s ease;
 }
 
+/* blinking cursor after SJ. */
+.footer-logo::after {
+  content: '|';
+  margin-left: 2px;
+  color: #00e5cc;
+  animation: cursorBlink 1s step-end infinite;
+  font-weight: 300;
+}
+
+/* glitch on hover */
 .footer-logo:hover {
-  opacity: 0.7;
+  animation: logoGlitch 0.4s steps(1) forwards;
 }
 
-/* ── Copyright (centre) ── */
+/* ══════════════════════════════
+   COPYRIGHT
+══════════════════════════════ */
+
 .footer-copy {
   font-family: 'Courier New', monospace;
   font-size: 0.78rem;
   color: rgba(255, 255, 255, 0.35);
   letter-spacing: 0.04em;
   text-align: center;
+
+  /* entry: blur-reveal */
+  animation: textReveal 0.9s ease 0.3s both;
 }
 
-/* ── Location (right) ── */
+/* heart pulses */
+.footer-copy .heart {
+  display: inline-block;
+  color: #ff4d6d;
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+/* ══════════════════════════════
+   LOCATION
+══════════════════════════════ */
+
 .footer-location {
   font-family: 'Courier New', monospace;
   font-size: 0.78rem;
   color: rgba(255, 255, 255, 0.35);
   letter-spacing: 0.04em;
   text-align: right;
+
+  /* entry: drift from right */
+  animation: locationDrift 0.7s ease 0.5s both;
+  transition: color 0.3s ease, letter-spacing 0.3s ease;
 }
 
-/* ── Responsive ── */
+.footer-location:hover {
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.1em;
+}
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+
 @media (max-width: 600px) {
   footer {
     padding: 18px 20px;
@@ -460,7 +580,7 @@ footer {
 
   .footer-inner {
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
     text-align: center;
   }
 
